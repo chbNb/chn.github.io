@@ -1,0 +1,77 @@
+<div class="roll">
+    <div id="roll_l" onmouseover="roll_l_stop()" onmouseout="roll_l_start()">
+
+        <?php foreach($recent_cer as $cer): ?>
+        <div class="roll_l_list">
+            <a href="../C/cer_detail.php?cer_id=<?php echo $cer['cer_id'] ?>"><?php echo $cer['cer_name'] ?></a>
+        </div>
+       <?php endforeach; ?>
+    </div>
+
+    <div class="roll_r">
+        <ul id="roll_r_ul">
+            <li class="roll_r_li"><a><img class="roll_r_img" src="../photo/8.jpg" ></a></li>
+            <li class="roll_r_li"><a><img class="roll_r_img" src="../photo/3.jpg"></a></li>
+            <li class="roll_r_li"><a><img class="roll_r_img" src="../photo/6.jpg"></a></li>
+        </ul>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var roll_l=document.getElementById("roll_l");
+    var id_l=setInterval('roll()',10);
+    var id_r=setInterval("roll_r_ul()",1000);
+    var roll_list=$('.roll_l_list');
+
+    $('a').mouseover(function () {
+        $(this).css('color','white');
+    })
+    $('a').mouseout(function () {
+        $(this).css('color','black');
+    })
+
+    function roll_l_stop() {
+        clearInterval(id_l);
+    }
+    function roll_l_start() {
+        id_l=setInterval('roll()',10);
+    }
+
+    $('#roll_r_ul').mouseover(function () {
+        clearInterval(id_r);
+    })
+    $('#roll_r_ul').mouseout(function () {
+        id_r=setInterval('roll_r_ul()',800);
+    })
+
+    function roll() {
+        if(roll_l.scrollTop>=roll_l.clientHeight-150)
+            roll_l.scrollTop=0;
+        else roll_l.scrollTop=roll_l.scrollTop+1;
+    }
+    function roll_r_ul() {
+        $('#roll_r_ul').animate({
+                left:-675
+            },200,function () {
+                $('#roll_r_ul').append($('#roll_r_ul li:first').clone());
+                $('#roll_r_ul li:first').remove();
+            }
+        )
+    }
+
+    $('.roll_r_li,.roll_l_list,#roll_r_ul').mouseover(function () {
+        $(this).css("cursor","pointer");
+    })
+
+    // $('#header_ul li:first').css("background-color",'red');
+    // $('#header_ul li,.user_info li').mouseover(function () {
+    //     $(this).css("cursor","pointer");
+    // })
+    // $('#header_ul li').click(function () {
+    //     $(this).css("background-color",'red');
+    //     $(this).siblings().css("background-color",'lightgreen');
+    // })
+</script>

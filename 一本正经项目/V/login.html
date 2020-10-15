@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Title</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <style>
+        body{
+            background:url(../photo/login_background.jpg)  no-repeat;
+            background-size:cover;
+        }
+        .login{
+            height: 450px;
+            width:60%;
+            margin:100px auto 0 auto;
+            border:1px solid blanchedalmond;
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+        }
+        span{
+            height: 300px;
+            width:40%;
+
+        }
+        .login_l{
+            height: 100%;
+            width:50%;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+        .login_r{
+            height: 100%;width:50%
+        }
+        .treaty{
+            height: 6%;
+            width: 80%;
+            margin:30px auto 0 auto;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .tail{
+            width:100%;
+            height: 15%;
+            margin-top:51px;
+            border:1px solid black;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .tail img{
+            width:35px;
+            height:35px;
+        }
+        .tail input{
+            height: 70%;
+            border:0;
+            width: 25%;
+            border-radius: 22px;
+        }
+        .choice{
+            width:100%;
+            height: 10%;
+            font-size: 20px;
+            margin-top: 30px;
+            text-align: center;
+            line-height: 45px;
+        }
+        .choice_2{
+            width:50%;
+            margin-right: 10px;
+        }
+        form{
+            width:80%;
+            height: 200px;
+            margin-left: 90px;
+        }
+        .user_id,.password{
+            width: 70%;
+            height: 30px;
+            margin-top:30px;
+        }
+        .login_button{
+            margin:35px 0 0 40px;
+            border-radius:20px;
+            width: 160px;height: 40px;
+            background-color: orangered;
+        }
+        .register_b{
+            width:100px;
+            height: 30px;
+            font-size: 15px;
+            border-radius: 20px;
+        }
+        .register_b a{
+            text-decoration: none;
+        }
+        span{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+
+        <img class="login_l" src="../photo/8.jpg">
+
+        <div class="login_r">
+
+            <div class="choice">
+                <label class="choice_2">账号密码登录</label>
+            </div>
+
+            <form action="../C/login_process.php" method="post" onsubmit="return form_judge()">
+                    <input class="user_id" type="text" name="user_id" value="请输入用户账号" autocomplete="off">
+                    <span class="id_span"></span><br/>
+                    <input class="password" type="text" name="password" value="请输入登录密码" autocomplete="off">
+                    <span class="pd_span"></span><br/>
+                    <input type="submit" class="login_button" value="登录">
+            </form>
+
+            <div  class="treaty">
+                <input type="radio">
+                <label>同意《服务使用协议》《隐私政策》</label><span></span>
+            </div>
+
+            <div class="tail">
+                <img src="../photo/QQ.png" >
+                <img src="../photo/微信.png">
+                <img src="../photo/微博.png">
+               <button class="register_b"><a href="register.html">立即注册</a></button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        $(".user_id").focus(function () {
+            var user_id=$(this).val();
+            if(user_id==this.defaultValue) {
+                $(this).val('');
+            }
+        })
+        $(".user_id").blur(function () {
+            var user_id=$(this).val();
+            if(user_id=="") {
+                $(this).val(this.defaultValue);
+            }
+        })
+        $(".password").focus(function () {
+            var user_id=$(this).val();
+            if(user_id==this.defaultValue) {
+                $(this).val('');
+                $(this).attr("type","password");
+            }
+        })
+        $(".password").blur(function () {
+            var user_id=$(this).val();
+            if(user_id=="") {
+                $(this).attr("type","text");
+                $(this).val(this.defaultValue);
+            }
+        })
+
+
+        function form_judge() {
+
+                var state=0;
+                if($('.user_id').val()=="请输入用户账号")
+                    state=state+1;
+                if($('.password').val()=="请输入登录密码")
+                state=state+3;
+                if($(".treaty input:checked").length==0)
+                state=state+5;
+
+            switch (state) {
+                case 0:
+                    return true;
+                    break;
+                case 1:
+                    $('.id_span').text("账号不能空！");
+
+                    break;
+                case 3:
+                    $('.pd_span').text("密码不能空！");
+
+                    break;
+                case 5:
+                    $(".treaty span").text("请勾选");
+
+                    break;
+                case 4:
+                    $('.id_span').text("账号不能空！");
+                    $('.pd_span').text("密码不能空！");
+
+                    break;
+                case 6:
+                    $('.id_span').text("账号不能空！");
+                    $(".treaty span").text("请勾选");
+
+                    break;
+                case 8:
+                    $('.pd_span').text("密码不能空！");
+                    $(".treaty span").text("请勾选");
+
+                    break;
+                case 9:
+                    $('.id_span').text("账号不能空！");
+                    $('.pd_span').text("密码不能空！");
+                    $(".treaty span").text("请勾选");
+
+            }
+            setTimeout("warn_clear()",'2000');
+            return false;
+
+        }
+        function warn_clear() {
+            $("span").text('');
+        }
+    </script>
+</body>
+</html>

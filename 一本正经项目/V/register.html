@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <style>
+        body{
+            background:url(../photo/login_background.jpg)  no-repeat;
+            background-size:cover;
+        }
+        input{
+            width: 55%;
+            height: 30px;
+            margin: 20px auto 0 auto;
+        }
+        .input_radio{
+            height: 15px;
+            width: 15px;
+            margin-top:40px;
+            margin-left: 10px;
+        }
+        .input_button{
+           border-radius: 18px;
+            margin-left: 40px;
+            margin-top:30px;
+            background-color: #f0ad4e;
+        }
+        form{
+            width: 75%;
+            height: 300px;
+            margin-top: 40px;
+            margin-left: 90px;
+        }
+        .register{
+            margin:100px auto 0 auto;
+            width: 30%;height: 450px;
+            border: 1px solid black;
+            background-color: white;
+        }
+        span{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register">
+
+        <img src="../photo/背景.jfif" style="width:100%;height: 18%;">
+
+        <form method="post" action="../C/register_process.php" onsubmit="return submit_judge()">
+            <label>账号&nbsp&nbsp&nbsp&nbsp&nbsp</label><input type="text" class="user_id" name="user_name" value="输入账号"><span class="ud_span"></span><br/>
+
+            <label>密码&nbsp&nbsp&nbsp&nbsp&nbsp</label><input class="password" name="user_pd" type="text" value="输入密码"><span class="pd_span"></span><br/>
+
+            <label>验证&nbsp&nbsp&nbsp&nbsp&nbsp</label><input class="check_code" type="text" value="再次输入密码"><span class="check_span"></span><br/>
+
+            <input class="input_radio" type="radio"><label>同意《服务使用协议》《隐私政策》</label><span class="ra_span">&nbsp</span><br/>
+
+            <input class="input_button" type="submit" value="注册">
+        </form>
+
+    </div>
+
+    <script type="text/javascript">
+        $('.user_id').focus(function () {
+            if($(this).val()==this.defaultValue)
+                $(this).val('');
+        })
+        $('.user_id').blur(function () {
+            if($(this).val()=="")
+            $(this).val(this.defaultValue);
+        })
+
+        $(".password,.check_code").focus(function () {
+            if($(this).val()==this.defaultValue)
+            {
+                $(this).val('');
+                $(this).attr('type',"password");
+            }
+        })
+        $(".password,.check_code").blur(function () {
+            if($(this).val()=="")
+            {
+                $(this).attr('type',"text");
+                $(this).val(this.defaultValue);
+            }
+        })
+
+        function submit_judge() {
+            $count=1;
+
+            if($(".user_id").val()=="输入账号"){
+                $(".ud_span").text(" 账号不能空");
+                $count=0;
+            }
+            if($(".password").val()=="输入密码"){
+                $(".pd_span").text(" 密码不能空");
+                $count=0;
+            }
+            if($(".check_code").val()=="再次输入密码"){
+                $(".pd_span").text(" 密码不能空");
+                $count=0;
+            }
+            if($(".input_radio:checked").length==0){
+                $(".ra_span").text(" 请勾选");
+                $count=0;
+            }
+
+
+            if($('.password').val()!=$('.check_code').val())
+            {
+                $(".check_span").text(" 密码不一致");
+                return false;
+            }
+            return $count;
+        }
+
+
+    </script>
+</body>
+</html>

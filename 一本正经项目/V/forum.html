@@ -1,0 +1,20 @@
+
+
+<?php foreach($question as $qs): ?>
+    <div class="question">
+        <a style="text-decoration: none;" href="question_detail.php?id=<?php echo $qs["id"] ?>&title=<?php echo $qs["title"] ?>">
+
+            <div class="first">&nbsp&nbsp&nbsp<?php echo $qs["title"] ?></div>
+
+            <div class="second">
+                <img src=<?php echo $qs["user_photo"] ?>>
+                <label><?php echo $qs["user_name"] ?></label>
+                <text>TA获得了超过45万个赞同</text>
+            </div>
+
+            <div class="third"><p><?php echo $qs["content"] ?></p></div>
+
+            <div class="fourth"><label><?php echo $qs["support_count"] ?>赞同</label><label style="margin-left: 10px"><?php echo $qs["comment_count"] ?>评论</label></div>
+        </a>
+    </div>
+<?php endforeach; ?>

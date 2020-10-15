@@ -1,0 +1,23 @@
+
+
+
+<?php foreach($res as $re): ?>
+    <div class="title_c"><label><?php echo $re['name'] ?></label></div>
+
+    <div class="content_c">
+        <div>初级会计证官网:&nbsp<label><?php echo $re['website'] ?></label></div>
+        <div>报名时间:&nbsp<label><?php echo $re['sign_time'] ?></label></div>
+        <div>考试时间:&nbsp<label><?php echo $re['exam_time'] ?></label></div>
+        <div>考试科目:&nbsp<label><?php echo $re['subject'] ?></label></div>
+        <div>报名费用:&nbsp<label><?php echo $re['fee'] ?></label></div>
+        <div>推荐课程:&nbsp<label><?php echo $re['recommend_course'] ?></label></div>
+        <div>推荐公众号:&nbsp<label><?php echo $re['recommend_account'] ?></label></div>
+    </div>
+
+    <div class="analyse">
+        <div class="a_1">初级会计征数据分析图</div>
+        <img class="a_2" src="../photo/表情包/3.jpg">
+        <div class="a_3">&nbsp&nbsp含金量分析:</div>
+        <div class="a_4">&nbsp&nbsp适合人群:</div>
+    </div>
+<?php endforeach; ?>

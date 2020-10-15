@@ -1,0 +1,16 @@
+<?php foreach($res as $data): ?>
+<div class="information">
+    <a>
+        <img class="info_img" src=<?php echo $data["photo"] ?>>
+        <div style="float: right;width:80%;height: 100%;">
+            <p style="font-size: 28px;margin-top:15px;margin-left:15px;"><?php echo $data["title"] ?></p>
+            <p style="margin-top:7%;margin-left:15px;color: gray;"><?php echo $data["time"] ?>&nbsp&nbsp&nbsp<span style="color:cornflowerblue;"><?php echo $data["source"] ?></span></p>
+        </div>
+    </a>
+</div>
+<?php endforeach; ?>
+<script type="text/javascript">
+    $('.information').mouseover(function () {
+        $(this).css("cursor","pointer");
+    })
+</script>

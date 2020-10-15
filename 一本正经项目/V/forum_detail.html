@@ -1,0 +1,53 @@
+
+    <div class="title"><?php echo $_GET['title']; ?></div>
+    <?php foreach($res as $data): ?>
+    <div class="content" >
+        <div class="first_">
+            <img src=<?php echo $data['user_photo'] ?> style="width: 40px;height: 40px;border-radius: 18px;margin-left:20px;margin-right: 20px">
+            <label><?php echo $data['user_name'] ?></label>
+        </div>
+
+        <div class="second_"><span><?php echo $data['content'] ?></span></div>
+
+        <div class="third_">
+            <button id="agree">赞同<?php echo $data['support_count'] ?></button>
+
+            <div style="margin-left:580px;margin-right: 10px">
+                <img id="love" src="../photo/爱心.png">
+                <label>233</label>
+            </div>
+
+            <div style="margin-right: 10px">
+                <img id="star" src="../photo/星星.png">
+                <label>233</label>
+            </div>
+
+            <div>
+                <img src="../photo/评论.png">
+                <label><?php echo $data['comment_count'] ?></label>
+            </div>
+
+        </div>
+    </div>
+    <?php endforeach; ?>
+
+    <script type="text/javascript">
+        $('#star').click(function () {
+            if($(this).attr("src")=="../photo/星星_.png")
+                $(this).attr("src","../photo/星星.png");
+            else $(this).attr("src","../photo/星星_.png");
+
+        })
+        $('#love').click(function () {
+            if($(this).attr("src")=="../photo/爱心_.png")
+                $(this).attr("src","../photo/爱心.png");
+            else $(this).attr("src","../photo/爱心_.png");
+        })
+
+        //此处的按钮有点问题，按下之后再按无法恢复原来的颜色
+        $('#agree').click(function () {
+            if(($(this).css("background-color"))!="red")
+                $(this).css("background-color","red");
+            else $(this).css("background-color","white");
+        })
+    </script>
